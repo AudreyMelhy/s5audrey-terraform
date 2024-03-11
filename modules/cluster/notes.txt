@@ -1,0 +1,15 @@
+brew install postgresql
+brew services start postgresql
+postgres --version
+
+aws secretsmanager get-secret-value --secret-id rds_master_password_secret3, 
+then copy "SecretString" value
+
+psql -h artifactory-1.c1si06yo0q4w.us-east-1.rds.amazonaws.com -p 5432 -U s5audrey -d mydatabase123
+
+\list to see list of all databases
+\q to exit psql cli
+
+terraform plan --out=/path/to/tfplan
+terraform apply "tfplan"
+

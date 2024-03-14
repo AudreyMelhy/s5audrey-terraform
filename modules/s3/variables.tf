@@ -15,3 +15,15 @@ variable "backup_regions" {
   type        = list(string)
   default     = ["us-east-2"]
 }
+
+variable "account_id" {
+  type = string
+}
+
+# variable "bucket_source" {
+#   type = string
+# }
+
+# variable "dynamo_table" {
+#   type = string
+# }

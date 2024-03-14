@@ -1,56 +1,38 @@
+resource "aws_s3_bucket_replication_configuration" "source_to_destination" {
+  provider = aws.source
+  # # Must have bucket versioning enabled first
+  depends_on = [aws_s3_bucket_versioning.source]
 
-resource "aws_s3_bucket_replication_configuration" "replication" {
-  provider = aws.main
-  # Must have bucket versioning enabled first
-  depends_on = [aws_s3_bucket_versioning.main]
-
-  role   = aws_iam_role.replication_role.arn
-  bucket = aws_s3_bucket.main.id
+  role   = aws_iam_role.replication.arn
+  bucket = aws_s3_bucket.source.id
 
   rule {
-    id = "replicate-all-objects"
-
-    # filter {
-    #   prefix = "foo"
-    # }
-
+    id = "S3Replication"
     status = "Enabled"
 
     destination {
-      bucket        = aws_s3_bucket.backup.arn
+      bucket        = aws_s3_bucket.destination.arn
       storage_class = "STANDARD"
     }
   }
 }
 
 
+resource "aws_s3_bucket_replication_configuration" "destination_to_source" {
+  provider = aws.destination
+  # # Must have bucket versioning enabled first
+  depends_on = [aws_s3_bucket_versioning.destination]
 
+  role   = aws_iam_role.replication.arn
+  bucket = aws_s3_bucket.destination.id
 
+  rule {
+    id = "S3Replication"
+    status = "Enabled"
 
-
-# # Enable replication from main to backup bucket
-# resource "aws_s3_bucket_replication" "main_replication" {
-#   source_bucket = aws_s3_bucket.main.id
-#   destination {
-#     bucket        = aws_s3_bucket.backup.id
-#     storage_class = "STANDARD"     # Set the desired storage class for replicated objects
-#     account_id    = var.account_id # Set the AWS account ID of the destination bucket owner
-#   }
-
-#   replication_rule {
-#     id     = "replicate-all-objects"
-#     status = "Enabled"
-
-#     priority = 1
-
-#     destination {
-#       bucket = aws_s3_bucket.backup.id
-#     }
-
-#     source_selection_criteria {
-#       sse_kms_encryption_context {
-#         bucket_owner = var.account_id # Set the AWS account ID of the destination bucket owner
-#       }
-#     }
-#   }
-# }
+    destination {
+      bucket        = aws_s3_bucket.source.arn
+      storage_class = "STANDARD"
+    }
+  }
+}

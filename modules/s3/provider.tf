@@ -9,11 +9,11 @@ terraform {
 }
 
 provider "aws" {
-  alias  = "backup"
-  region = var.aws_region_backup
+  alias  = "source"
+  region = "us-east-1"
 }
 
 provider "aws" {
-  alias  = "main"
-  region = var.aws_region_main
+  alias  = "destination"
+  region = "us-east-2"
 }

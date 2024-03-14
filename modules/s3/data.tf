@@ -20,7 +20,7 @@ data "aws_iam_policy_document" "replication" {
       "s3:ListBucket",
     ]
 
-    resources = [aws_s3_bucket.main.arn]
+    resources = [aws_s3_bucket.source.arn]
   }
 
   statement {
@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "replication" {
       "s3:GetObjectVersionTagging",
     ]
 
-    resources = ["${aws_s3_bucket.main.arn}/*"]
+    resources = ["${aws_s3_bucket.source.arn}/*"]
   }
 
   statement {
@@ -44,18 +44,18 @@ data "aws_iam_policy_document" "replication" {
       "s3:ReplicateTags",
     ]
 
-    resources = ["${aws_s3_bucket.backup.arn}/*"]
+    resources = ["${aws_s3_bucket.destination.arn}/*"]
   }
 
-  statement {
-    effect = "Allow"
+  # statement {
+  #   effect = "Allow"
 
-    actions = [
-      "s3:PutBucketVersioning",
-      "s3:PutBucketAcl",
-    ]
+  #   actions = [
+  #     "s3:PutBucketVersioning",
+  #     # "s3:PutBucketAcl",
+  #   ]
 
-    resources = [aws_s3_bucket.main.arn]
-  }
+  #   resources = [aws_s3_bucket.source.arn]
+  # }
 
 }

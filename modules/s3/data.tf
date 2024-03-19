@@ -27,10 +27,16 @@ data "aws_iam_policy_document" "replication" {
     effect = "Allow"
 
     actions = [
-      "s3:GetObjectVersionForReplication",
-      "s3:GetObjectVersionAcl",
-      "s3:GetObjectVersionTagging",
-    ]
+          "s3:GetObjectVersion",
+          "s3:GetObjectVersionAcl",
+        ]
+
+    # actions = [
+    #   "s3:GetObjectVersionForReplication",
+    #   "s3:GetObjectVersionAcl",
+    #   "s3:GetObjectVersionTagging",
+    # ]
+
 
     resources = ["${aws_s3_bucket.source.arn}/*"]
   }
@@ -40,7 +46,7 @@ data "aws_iam_policy_document" "replication" {
 
     actions = [
       "s3:ReplicateObject",
-      "s3:ReplicateDelete",
+      "s3:ReplicateDelete", # to be allowed only for testing purpose
       "s3:ReplicateTags",
     ]
 

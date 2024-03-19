@@ -13,3 +13,31 @@ psql -h artifactory-1.c1si06yo0q4w.us-east-1.rds.amazonaws.com -p 5432 -U s5audr
 terraform plan --out=/path/to/tfplan
 terraform apply "tfplan"
 
+to force delete a secret: on aws cli type: aws secretmanager delete-secret --secret-id --force
+create a certificate manager of format *.domaine.com
+
+
+create a route53 record
+ex: aws secretsmanager delete-secret --secret-id  2560-dev-del-artifactory-db-username --force-delete-without-recovery --region us-east-1
+
+instead of using the endpoint to connect, we can use a record set
+
+you need a sec gp to access the db
+
+understand how the eks control plane works
+what elements are needed
+from there write a module for the eks control plane and the eks node-group
+
+can we replicate a bucket in 2 regions, first is main, others are backup and disable backup deletion
+can a backup bucket always be affected by the changes in the main?
+
+
+data "aws_secretsmanager_secret_version" "database_password" {
+  secret_id = "tcc-db-creds"
+}
+
+locals {
+  tcc-db-creds = jsondecode(
+    data.aws_secretsmanager_secret_version.database_password.secret_string
+  )
+}

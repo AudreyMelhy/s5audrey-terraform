@@ -1,6 +1,4 @@
-# s5audrey-terraform
 
-#per best practice is it good or bad to delete replicated objects?
 Whether it's good or bad to delete replicated objects depends on your specific use case and requirements. Here are some considerations to help you determine the best approach:
 
 Data Retention Policies: Consider your organization's data retention policies. Some organizations may have requirements to retain data for a certain period before deletion, while others may need to delete data promptly to comply with regulations such as GDPR.

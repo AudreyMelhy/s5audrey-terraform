@@ -20,9 +20,10 @@ variable "account_id" {
   type = string
 }
 
-# variable "bucket_source" {
-#   type = string
-# }
+variable "force_destroy" {
+  type    = bool
+  default = true
+}
 
 # variable "dynamo_table" {
 #   type = string

@@ -27,9 +27,10 @@ data "aws_iam_policy_document" "replication" {
     effect = "Allow"
 
     actions = [
-          "s3:GetObjectVersion",
-          "s3:GetObjectVersionAcl",
-        ]
+      "s3:GetObjectVersionForReplication",
+      # "s3:GetObjectVersionAcl",
+      "s3:GetObjectVersionTagging",
+    ]
 
     # actions = [
     #   "s3:GetObjectVersionForReplication",

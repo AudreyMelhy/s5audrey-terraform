@@ -3,17 +3,17 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "~> 4.0"
     }
   }
 }
 
 provider "aws" {
   alias  = "source"
-  region = "us-east-1"
+  region = var.aws_region_main
 }
 
 provider "aws" {
   alias  = "destination"
-  region = "us-east-2"
+  region = var.aws_region_backup
 }

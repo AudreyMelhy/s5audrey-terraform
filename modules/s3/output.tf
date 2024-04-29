@@ -9,17 +9,17 @@
 
 # Output for aws_iam_role
 output "aws_iam_role" {
-  value = aws_iam_role.replication
+  value = aws_iam_role.s3_replication_role
 }
 
 # Output for aws_iam_role_policy
 output "aws_iam_policy" {
-  value = aws_iam_policy.replication
+  value = aws_iam_policy.s3_private_acl_policy
 }
 
 # Output for aws_iam_role_policy_attachment
 output "aws_iam_role_policy_attachment" {
-  value = aws_iam_role_policy_attachment.replication
+  value = aws_iam_role_policy_attachment.s3_replication_policy_attachment
 }
 
 # Output for S3 bucket

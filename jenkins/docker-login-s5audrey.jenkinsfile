@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Building the image') {
             steps {
-                    dir("${WORKSPACE}/terraform/docker") {
+                    dir("${WORKSPACE}/docker") {
                     script {
                         sh """ 
                             docker build -t ${env.DOCKER_HUB_REGISTRY}/jenkins-slave:${params.IMAGE_TAG} .

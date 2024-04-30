@@ -5,7 +5,7 @@ pipeline {
         DOCKER_CREDENTIAL_ID = 'del-docker-hub-auth'
     }    
     parameters {
-        string(name: 'BRANCH_NAME', defaultValue: 'main', description: '')
+        string(name: 'BRANCH_NAME', defaultValue: 'master', description: '')
         string(name: 'IMAGE_TAG', defaultValue: 'latest', description: '')
     }
     stages {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Building the image') {
             steps {
-                    dir("${WORKSPACE}/terraform/docker") {
+                    dir("${WORKSPACE}/docker") {
                     script {
                         sh """ 
                             docker build -t ${env.DOCKER_HUB_REGISTRY}/jenkins-master-slave:${params.IMAGE_TAG} .

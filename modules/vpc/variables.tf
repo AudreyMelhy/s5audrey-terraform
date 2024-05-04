@@ -20,6 +20,10 @@ variable "vpc_cidr_block" {
 
 
 variable "nat_gateway_count" {
-  type    = number
-  default = 0
+  type = number
+}
+
+variable "vpc_name" {
+  description = "Name or identifier for the VPC"
+  type        = string
 }

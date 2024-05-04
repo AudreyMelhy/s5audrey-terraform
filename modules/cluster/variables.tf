@@ -1,5 +1,11 @@
-variable "aws_region" {
-  type = string
+variable "aws_region_main" {
+  type    = string
+  default = "us-east-1"
+}
+
+variable "aws_region_backup" {
+  type    = string
+  default = "us-east-2"
 }
 
 variable "vpc_id" {

@@ -1,6 +1,6 @@
 output "vpc_id" {
   description = "ID of the created VPC"
-  value       = aws_vpc.audrey_vpc.id
+  value       = aws_vpc.vpc.id
 }
 
 output "public_subnet_ids" {

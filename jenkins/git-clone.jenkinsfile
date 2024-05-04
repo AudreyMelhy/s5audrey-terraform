@@ -1,0 +1,19 @@
+pipeline {
+    agent {label 'SERVER02'}
+    
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git credentialsId: 's5audrey-git-repo',
+                    url: 'git@github.com:AudreyMelhy/terraform',
+                    branch: "${params.BRANCH_NAME}"
+            }
+        }
+        
+        stage('List Repository Content') {
+            steps {
+                sh "ls -la"
+            }
+        }
+    }
+}
